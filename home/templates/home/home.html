@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+Home-Page
+{% endblock %}
+
+{% block content %}
+  <main>
+
+    <div class="main-block">
+      <div class = "transparent-main-block">
+        <h1>Controlar o Patrimônio Municipal é com RECAD - Patrimonial<!</h1>
+        <h2>Gere seus próprios códigos QR-Code para controle Total do Patrimonio. Rápido, conveniente e registro exclusivo.</h2>
+      </div>
+
+      <div class = "choose-action">
+  
+        <div class="sign-up-action">
+          <a href="/log">
+            <button class ="sign-up-button" id="sign-up-btn">FAÇA LOGIN PARA ACESSO TOTAL</button>
+          </a>
+        </div>
+    
+        <div class="try-free-action">
+          <a href="/free">
+            <button class="try-free-button" id="try-free-btn">Experimente Agora Acesso Teste</button>
+          </a>
+        
+        </div>
+    
+      </div>
+  
+    </div>
+  
+    
+  
+    <div class = "info-block">
+      
+      <div class="functions-text">
+        <p>FUNÇÕES PRINCIPAIS</p>
+      </div>
+  
+      <div class = "info-cards">
+        <div class = "card1">
+          <span class="card-title">
+            <p>Recad-Basico</p>
+          </span>
+  
+          <div class="card-info">
+            <img src="{% static 'home/images/clock_icon.png' %}" alt="clock_image">
+            <p>Crie de forma rápida e fácil todos seus registros de patrimonio com QR-Code</p>
+          </div>
+  
+        </div>
+  
+        <div class = "card2">
+          <span class="card-title">
+            <p>Recad-Exclusivo</p>
+          </span>
+  
+          <div class="card-info">
+            <img src="{% static 'home/images/brush_icon.png' %}" alt="brush_image">
+            <p>Crie os códigos QR-Code adequados para sua Gestão! Adicione um link, escolha a cor, formato, tamanho desejado, etc.</p>
+          </div>
+  
+        </div>
+  
+        <div class = "card3">
+          <span class="card-title">
+            <p>Amplas possibilidades</p>
+          </span>
+  
+          <div class="card-info">
+            <img src="{% static 'home/images/gears_icon.png' %}" alt="gears_image">
+            <p>Após os registros, você terá acesso a funcionalidades avançadas. Gerenciando de forma adequada o Patrimonio Municipal</p>
+          </div>
+  
+        </div>
+  
+  
+      </div>
+  
+    </div>
+  
+  </main>
+  
+
+
+    
+{% endblock  %}

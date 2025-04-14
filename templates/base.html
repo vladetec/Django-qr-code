@@ -1,0 +1,84 @@
+<html>
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="{% static 'my_qrcodes/css/my_qrcodes.css' %}">
+  <link rel="stylesheet" href="{% static 'contact/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'home_after/css/home_after.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+
+  {% block link %}{% endblock %} 
+
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+
+  <body>
+    
+
+    <header>
+      {% if request.user.is_authenticated %}
+        <div class="logout">
+            <h6>{{ request.user.username }}</h6>
+            <a href="{% url 'logout' %}">Sair</a>
+        </div>
+      {% endif %}
+        <button class = "button-redirect" type="button" onclick = "location.href = '/'">
+          <img src="{% static 'images/loginho.png' %}" alt="logotype">
+        </button>
+
+        <div class="qr-code-links">
+          {% if request.path == '/pro/' %}
+              <a href="{% url 'packet_pro' %}">Criar código QR-Code</a>
+          {% elif request.path == '/standard/' %}
+              <a href="{% url 'packet_standard' %}">Criar código QR-Code</a>
+          {% else %}
+              <a href="{% url 'home_after' %}">Criar código QR-Code</a>
+          {% endif %}
+      
+          {% if request.user.is_authenticated %}
+              <a href="{% url 'my_qrcodes' %}">Meus códigos QR-Codes</a>
+          {% endif %}
+          
+          <a href="{% url 'contact' %}">Contatos</a>
+      </div>
+
+    </header>
+      {% block content %} 
+      {% endblock %}
+    
+    {% if not footer %}
+      <footer>
+          <div class="about-us" >
+            <p> Sobre Nós </p>
+            <nav class = "footer-links">
+                <a href="">Contatos</a>
+                <a href="">Perguntas</a>
+                <a href="">Políticas de Privacidade</a>
+            </nav>           
+          </div> 
+
+          <div class = "contacts-icons">
+            <img src = "{% static 'images/black-youtube-icon.png' %}" alt="black-youtube-icon">
+            <img src = "{% static 'images/email-icon-design.png' %}" alt="email-icon-design">
+            <img src = "{% static 'images/telegram-black-icon1.png' %}" alt="telegram-black-icon">
+            <img src = "{% static 'images/black-instagram-icon.png' %}" alt="black-instagram-icon">
+          </div>
+
+          <div class = "copyright-logotype">
+            <img src="{% static 'images/loginho.png' %}" alt="logotype_qreasy">
+            <p>&copy; Copyright 2025 VLADTEC.COM</p>
+          </div>
+      </footer>
+    {% endif %}    
+  </body>
+</html>

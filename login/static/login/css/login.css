@@ -1,0 +1,353 @@
+/* === Global Resets & Mobile-First Base Styles === */
+* {
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Adicione fontes fallback se necessário */
+    background-color: #E8ECFC;
+    /* Adiciona padding no topo para compensar o header fixo (ajuste conforme altura do header mobile) */
+    padding-top: 90px;
+    /* Adiciona padding lateral para não colar nas bordas em telas pequenas */
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da tela */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #4466FF;
+    width: 100%; /* Usa porcentagem em vez de vw */
+    height: 80px; /* Altura reduzida para mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Opcional: linha sutil abaixo */
+}
+
+.logo {
+    padding-left: 8px; /* Padding ajustado */
+    color: #ffffff;
+    /* width: auto; */ /* Deixa a largura ser definida pelo conteúdo */
+    font-family: 'Exo', sans-serif; /* Adicionar aspas e fallback */
+    font-size: 28px; /* Tamanho de fonte reduzido */
+    font-weight: 700;
+    line-height: 1.2; /* Usar valor sem unidade é mais flexível */
+    border-left: 2px solid #ffffff;
+    white-space: nowrap; /* Evita quebra de linha */
+    width: 2000px;
+}
+
+header img {
+    width: 50px; /* Tamanho reduzido */
+    height: auto; /* Mantém proporção */
+    /* Remove border, opacity, gap desnecessários aqui */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Faz os filhos (inputs, button) esticarem na largura */
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 500px; /* Limita a largura máxima em telas maiores */
+    margin: 30px auto; /* Centraliza o form horizontalmente e adiciona margem vertical */
+    padding: 20px; /* Espaçamento interno */
+    background-color: #ffffff; /* Fundo branco para destacar o formulário */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+form h2 {
+    text-align: center;
+    font-size: 26px; /* Tamanho reduzido */
+    line-height: 1.3;
+    font-weight: 700; /* Não precisa de 'px' */
+    margin-bottom: 8px;
+    color: #333;
+    /* font-family: 'Exo', sans-serif; */ /* Defina a fonte desejada */
+}
+
+form h3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px; /* Tamanho reduzido */
+    line-height: 1.4;
+    margin-bottom: 25px;
+    font-family: 'Montserrat Alternates', sans-serif; /* Adicionar aspas e fallback */
+    color: #555;
+}
+
+/* --- Estrutura para Input com Ícone --- */
+.iconBox, .iconBox2 {
+    position: relative; /* Container relativo para posicionar o ícone absoluto */
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+    display: flex; /* Ajuda a alinhar itens internos se necessário */
+    align-items: center;
+}
+
+.iconBox .blue, .iconBox2 .blue2 {
+    background-color: #4466FF;
+    border-radius: 11px 0 0 11px;
+    width: 40px; /* Largura da faixa colorida */
+    height: 48px; /* Altura igual à do input mobile */
+    position: absolute; /* Posição absoluta relativa ao .iconBox */
+    left: 0;
+    top: 0;
+    z-index: 1; /* Garante que fique abaixo do ícone se houver sobreposição */
+}
+
+.iconBox img, .iconBox2 img {
+    width: 18px; /* Tamanho do ícone */
+    height: 18px;
+    position: absolute;
+    left: 11px; /* Posição horizontal do ícone dentro da faixa */
+    top: 50%; /* Alinha verticalmente ao centro */
+    transform: translateY(-50%); /* Ajuste fino para centralização vertical */
+    z-index: 2; /* Ícone sobre a faixa azul */
+}
+
+form input {
+    width: 100%; /* Ocupa toda a largura do container (.iconBox) */
+    height: 48px; /* Altura padrão mobile */
+    border-radius: 11px;
+    border: 1px solid #ccc; /* Borda mais suave */
+    background-color: #ffffff;
+    /* Padding: top/bottom | right | left (maior para não sobrepor o ícone) */
+    padding: 10px 15px 10px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    position: relative; /* Garante que o input fique sobre a faixa azul */
+    z-index: 0;
+}
+
+form input::placeholder {
+    /* width: auto; */ /* Largura automática */
+    line-height: normal; /* ou herda do input */
+    font-size: 14px; /* Ligeiramente menor */
+    color: #999; /* Cor mais suave */
+    /* position: static; */ /* Reset caso a classe .star use absolute */
+}
+
+/* Estilo específico para classe .email (se necessário, senão pode remover) */
+/*
+form input.email {
+     background-color: black; // Isso parece estranho, tem certeza?
+     color: white; // Se o fundo for preto
+}
+*/
+
+/* Placeholder da classe star (se ainda for necessário) */
+/*
+form input.star::placeholder {
+    position: absolute;
+    top: 15px; // Ajustar posição conforme necessário
+}
+*/
+
+form button {
+    cursor: pointer;
+    border-radius: 28px;
+    background-color: #4466FF;
+    width: 100%; /* Largura total do form */
+    height: 50px; /* Altura ajustada */
+    margin-top: 20px; /* Espaçamento acima */
+    margin-bottom: 15px; /* Espaçamento abaixo */
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px; /* Tamanho ajustado */
+    line-height: 1.4;
+    font-family: 'Century Gothic', sans-serif; /* Adicionar fallback */
+    border: none; /* Remove borda padrão */
+    padding: 0 15px; /* Padding interno lateral */
+    transition: background-color 0.3s ease; /* Efeito suave no hover */
+}
+
+form button:hover {
+    background-color: #3355DD; /* Cor um pouco mais escura no hover */
+}
+
+form a {
+    display: block; /* Faz o link ocupar a linha inteira para centralizar o texto */
+    width: fit-content; /* Largura baseada no conteúdo */
+    margin: 15px auto 0; /* Centraliza horizontalmente, margem superior */
+    text-decoration: none;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 14px; /* Tamanho ajustado */
+    font-weight: bold;
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.4); /* Cor ajustada para legibilidade */
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+form a:hover {
+    color: #4466FF; /* Muda a cor no hover */
+}
+
+
+/* === Tablet Styles (Telas a partir de 768px) === */
+@media (min-width: 768px) {
+    body {
+        padding-top: 100px; /* Ajusta padding se a altura do header mudar */
+    }
+
+    header {
+        height: 90px; /* Altura intermediária */
+        justify-content: space-between; /* Ex: Logo à esquerda, algo à direita */
+        padding: 0 30px; /* Adiciona padding lateral no header */
+    }
+
+    .logo {
+        font-size: 34px; /* Aumenta um pouco */
+        padding-left: 10px;
+    }
+
+    header img {
+        width: 60px; /* Aumenta um pouco */
+    }
+
+    form {
+        max-width: 550px; /* Form um pouco mais largo */
+        padding: 30px;
+    }
+
+    form h2 {
+        font-size: 32px; /* Aumenta */
+    }
+
+    form h3 {
+        font-size: 18px; /* Aumenta */
+    }
+
+    form input {
+        height: 52px; /* Input um pouco mais alto */
+        padding-left: 55px; /* Ajusta padding para o ícone */
+        font-size: 17px;
+    }
+
+    .iconBox .blue, .iconBox2 .blue2 {
+        height: 52px; /* Acompanha altura do input */
+        width: 45px; /* Faixa um pouco mais larga */
+    }
+
+     .iconBox img, .iconBox2 img {
+        width: 20px;
+        height: 20px;
+        left: 12px; /* Ajusta posição do ícone */
+     }
+
+    form button {
+        height: 53px;
+        font-size: 20px; /* Aumenta */
+    }
+
+    form a {
+        font-size: 16px; /* Aumenta */
+    }
+}
+
+
+/* === Desktop Styles (Telas a partir de 1024px) === */
+@media (min-width: 1024px) {
+    body {
+        padding-top: 117px; /* Espaço para o header original (107px + margem) */
+        /* Reintroduz flexbox se quiser centralizar o form verticalmente na tela */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* padding-left: 0; */ /* Remove padding lateral se centralizado */
+        /* padding-right: 0; */
+    }
+
+    header {
+        height: 107px; /* Altura original */
+        padding: 0 50px; /* Padding lateral maior */
+        /* justify-content: center; */ /* Volta a centralizar se for o design */
+    }
+
+    .logo {
+        font-size: 40px; /* Tamanho original */
+        line-height: 53.16px; /* Original */
+        padding-left: 5px; /* Original */
+        /* width: 142px; */ /* Evite usar largura fixa se possível */
+        /* height: 53px; */
+    }
+
+    header img {
+        width: 75.73px; /* Tamanho original */
+        height: 61.14px; /* Original */
+    }
+
+    form {
+        max-width: 600px; /* Largura máxima final */
+        padding: 40px;
+         /* Se removeu flex do body, mantenha margin auto */
+         /* Se usou flex no body, pode remover margin auto */
+         /* margin: 0; */
+    }
+
+    form h2 {
+        font-size: 40px; /* Original */
+        line-height: 48.41px; /* Original */
+    }
+
+    form h3 {
+        font-size: 20px; /* Original */
+        line-height: 24.38px; /* Original */
+    }
+
+    form input {
+        height: 56px; /* Original */
+        padding-left: 50px; /* Padding original (ajustar conforme .blue width)*/
+    }
+
+    .iconBox .blue, .iconBox2 .blue2 {
+        height: 56px; /* Acompanha input */
+        width: 39px; /* Largura original */
+        border-radius: 11px 0 0 11px; /* Original */
+    }
+
+     .iconBox img, .iconBox2 img {
+        width: 22px; /* Original */
+        height: 22px; /* Original */
+        left: 9px; /* Posição original */
+        /* Recalcular top/transform se necessário para alinhamento perfeito */
+        /* top: 50%; */
+        /* transform: translateY(-50%); */
+         /* OU usar o valor absoluto se for preciso */
+         /* top: 17px; */
+         /* transform: none; */
+     }
+     /* Ajuste fino para posição original exata, se necessário */
+     .iconBox img { margin-top: 0; top: 17px; transform: none; }
+     .iconBox2 img { margin-top: 0; top: 17px; transform: none; }
+
+
+    form button {
+        /* Mantém width: 100% para flexibilidade ou volta ao fixo se obrigatório */
+        /* width: 554px; */
+        height: 53px; /* Original */
+        font-size: 24px; /* Original */
+        line-height: 29.43px; /* Original */
+        margin-top: 35px; /* Original */
+        margin-bottom: 10px; /* Original */
+    }
+
+    form a {
+        font-size: 18px; /* Original */
+        line-height: 17.17px; /* Original */
+        color: rgba(0, 0, 0, 0.36); /* Original */
+        /* Mantém centralizado ou volta ao layout com margem esquerda se necessário */
+         margin: 15px auto 0; /* Centralizado */
+        /* OU */
+        /* display: inline-block; */ /* Para poder aplicar margin-left */
+        /* margin: 10px 0 0 200px; */ /* Layout original com offset - verifique se faz sentido com a largura do form */
+    }
+}

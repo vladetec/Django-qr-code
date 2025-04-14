@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contatos{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="qr-section">
+        <img src="{% static 'contact/images/qr-codes.png' %}" alt="QR-Code">
+    </div>
+    <div class="contact-info">
+        <h2>Você tem alguma pergunta?</h2>
+        <p>+5583987653210<br>RecadPatrimonial@gmail.com</p>
+        <p>Nós trabalhamos de <br> Segunda a Sexta: 8:00-18:00</p>
+        <p>Estamos sempre felizes em receber você!<br>Recad-Patrimonial</p>
+    </div>
+</div>
+{% endblock %}

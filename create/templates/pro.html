@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/pro.css' %}">
+{% endblock %}
+
+{% block title %}
+    Gerador - QR-Code 
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<body>
+    
+
+    <div class="pro">
+        <div class="pro2">
+            <p class="p1">Gerador Exclusivo de</p>
+            <p class="p2">QR-code</p>
+            <p class="p3">24 мeses</p>
+        </div>
+    </div>
+
+    {% if error %}
+        <p class="error-message" style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <div class="main">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2><img src="{% static 'img/icon_link.png' %}" alt=""> Sua URL</h2>
+            <input class="input-type1" type="text" name="link" placeholder="https://RecadPatrimonial.com/" required>
+        
+            <h2><img src="{% static 'img/icon_name.png' %}" alt="">Nome</h2>
+            <input class="input-type1" type="text" name="name" placeholder="Nome do QR-Code" required>
+        
+            <h2><img src="{% static 'img/icon_size.png' %}" alt="">Tamanho QR-Code</h2>
+            <input class="input-type4" type="range" name="size" value="150" min = '100' max="300" id="input-range" required>
+            <label id= 'range-label' for="input-range">Largura: 100px</label>
+
+        
+            <h2><img src="{% static 'img/icon_color.png' %}" alt=""> Cor Qr-Code</h2>
+            <label>Cor Padrão:</label>
+            <div class="input-colors">
+                <input class="input-type2" type="color" name="color" id= 'color-picker' required>
+                <input class="input-type3" type="text" name="color" id= 'color-text' placeholder="#FFFFFF" required>
+            </div>
+
+            <label>Cor de fundo:</label>
+            <div class="input-colors">
+                <input class="input-type2" type="color" name="back_color" id = 'color-picker1' required>
+                <input class="input-type3" type="text" name="back_color" id= 'color-text1' placeholder="#FFFFFF" required>
+            </div>
+            
+
+
+            <h2><img src="{% static 'img/icon_pattern.png' %}" alt="">Modelo QR-Code</h2>
+
+            <select class= 'pattern' name="pattern" id="pattern">
+                <option value="default">Padrão</option>
+                <option value="squares">Quadrado</option>
+                <option value="dots">Pontilhado</option>
+                <option value="rounded">Arredondado</option>
+                <option value="vertical_lines">Vertical</option>
+                <option value="horizontal_lines">Horizontal</option>
+            </select>
+
+            
+            <h2><img src="{% static 'img/icon_image.png' %}" alt="">Logotipo</h2>
+            <div class="input-colors">
+                <input class="input-logo" name = "logo" type="file" accept="image/*">
+            </div>
+
+            <div class = "QR_button">              
+                <button class="create-pro" type="submit" >Gerar</button>
+            </div>
+        </form>
+
+        <div class="qr-code-container">
+            <h2>QR-Code - Gerado:</h2>
+            {% if qr_image_url %}
+                <img class="QR" src="{{ qr_image_url }}" alt="QR-Code Gerado">
+            {% else %}
+                <img class="QR" src = "{% static 'img/qr-codes.png' %}" alt="QR-Code Gerado">
+            {% endif %}
+        </div>
+       
+       
+
+    </div>
+
+    <script src="{% static 'js/standart.js'%}"></script>
+
+    
+
+
+
+</body>
+
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  QR-Codes Gerados
+{% endblock %}
+
+{% block content %}
+
+
+
+<main class="main1">
+    <div class="modal-buttons" style="display: none;">
+        <button id="jpeg-download" class="jpeg-button">DOWNLOAD</button>
+        <button id="png-download" class="png-button">DOWNLOAD</button>
+    </div>
+    
+    <span class="qr-text">
+        <h1>Gerados - QR-Code</h1>
+    </span>
+
+
+    <div class="filter">
+        <div>
+            
+            <img src="{% static 'my_qrcodes/images/filter_down.png' %}" width="16.5px" height="7.5px" alt="">
+        </div>
+    </div>
+
+    <div class="qr-codes">
+        {% if user_qrcodes %}
+            
+            {% for qrcode in user_qrcodes %}
+                <div class="qr-item">
+                    <p>{{ qrcode.created_at|date:"d F, Y" }}</p>
+                    <img class="my-qrcode-img" src="{{ qrcode.image.url }}" alt="QR-Code">
+                    <div>
+                        <h2>{{ qrcode.name }}</h2>
+                        <a href="{{ qrcode.image.url }}" download>
+                            <button class="download-button" id="download-btn"></button>
+                        </a>
+                        <form class="button" method="POST" action="{% url 'delete_qrcode' qrcode.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="del_qt" >
+                                <img src="{% static 'my_qrcodes/images/icon-delete.png' %}  " alt="delete" width="25px" height="25px">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        {% else %}
+            <p>Você ainda não criou nenhum código QR.</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

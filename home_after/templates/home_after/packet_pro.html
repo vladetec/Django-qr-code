@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  
+  Seleção de pacotes
+{% endblock %}
+
+
+{% block content %}
+
+
+
+  <main class="main2">
+    
+    <div class="block-main">
+      <div class="text-packet">
+        
+        <span class = "subtitle-packet">Você fez uma ótima escolha!</span>
+      </div>
+    
+      <div class="packet-cards">
+    
+        <div class="packet-card11">
+    
+          <div class = "packet-title">
+            <h1>_ RECAD _</h1>
+            <p>BASICO.</p>
+            <hr class="divider2">
+          </div>
+    
+          <div class="packet-option">
+            <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+            <p>1 QR-Code teste.</p>
+          </div>
+    
+          <div class="packet-option">
+            <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+            <p>Rapido e Simples</p>
+          </div>
+    
+          <div class="packet-option">
+            <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+            <p>Configurações básicas</p>
+          </div>
+    
+          
+          <a href="{% url 'free' %}" class="get-button" >PEGAR</a>
+    
+        </div>
+    
+    
+        <div class="packet-card11">
+    
+          <div class = "packet-title">
+            <h1>_ RECAD _</h1>
+            <p>PADRÃO.</p>
+            <hr class="divider1">
+    
+          </div>
+    
+          <div class="packet-option">
+            <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+            <p>Códigos QR personalizados</p>
+          </div>
+    
+          <div class="packet-option">
+            <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+            <p>Rapido e personalizados</p>
+        </div>
+    
+          <div class="packet-option">
+            <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+            <p>Configurações de cor e texto</p>
+        </div>
+    
+          
+        <a href="{% url 'standard' %}" class="get-button" >PEGAR</a>
+        </div>
+    
+    
+        <div class="packet-pro">
+            <div class="packet-title-pro">
+              <h1>EXPERT.</h1>
+            </div>
+            
+            <a href="/pro" class="pro-main-button">CRIAR CÓDIGO QR-Code</a>
+            <hr class="divider-pro">
+          
+            <div class="packet-option-pro">
+              <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="icon">
+              <p>Profissional e Personalizados</p>
+            </div>
+          
+            <div class="packet-option-pro">
+              <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="icon">
+              <p>Configurações de cor e texto</p>
+            </div>
+          
+            <div class="packet-option-pro">
+              <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="icon">
+              <p>Personalize o modelo, a moldura e os logotipos</p>
+            </div>
+          
+            <a href="/home_after" class="pro-cancel-button">CANCELAR ASSINATURA</a>
+          </div>
+          
+          <div class="packet-card11">
+    
+            <div class = "packet-title">
+              <h1>Add Qr-code</h1>
+              <p>EXPERT.</p>
+              <hr class="divider1">
+      
+            </div>
+      
+            <div class="packet-option">
+              <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+              <p>Adicione seus códigos QR-Code</p>
+            </div>
+      
+            <div class="packet-option">
+              <img src="{% static 'home_after/images/right_arrow_icon.png' %}" alt="main-block" width="25px;" height="25px;">
+              <p>Válido durante a duração da sua assinatura</p>
+            </div>
+      
+            
+      
+            
+            <button class="add" id="add">ADICIONAR</button>
+          </div>
+
+  </main>
+  <div id="popupBg3" class="popup-bg3">
+    <!-- Adicionar QR-Code -->
+    <div id="popup3" class="popup3">
+        <div class="text-form3">
+            <p>ADD QR-Code </p>
+            <span>Expert</span>
+            <div class="close-text3">
+                <button id="closePopup3" class="close-popup3" >
+                    <img class="icon-cross3"  src="{% static 'home_after/images/icon-cross.png' %}" alt="">
+                </button>
+            </div>
+            <form method="POST" class="quantityDiv">
+              {% csrf_token %}
+              <input class="quantity" type="number" id="quantity" name="quantity" min="1" max="50" value="1">
+              <button class="quantityButton" name="quantity_button" type="submit" >ADICIONAR</button>
+            </form>
+
+  <script src="{% static 'home_after/js/home_after.js'%}"></script>
+
+{% endblock %}
+
+

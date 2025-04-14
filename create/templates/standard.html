@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/standard.css' %}">
+{% endblock %}
+
+{% block title %}
+Gerador - QR-Code 
+{% endblock %}
+
+
+{% block content %}
+
+<body>
+    
+    <div class="standard">
+        <div class="standard2">
+            <p class="p1">Gerador Standard de</p>
+            <p class="p2">QR-code</p>
+            <p class="p3">6 мeses</p>
+        </div>
+    </div>
+
+    {% if error %}
+        <p class="error-message" style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <div class="main">
+        <form method="post">
+            {% csrf_token %}
+            <h2><img src="{% static 'img/icon_link.png' %}" alt=""> Sua URL</h2>
+            <input class="input-type1" type="text" name="link" placeholder="https://RecadPatrimonial.com/" required>
+        
+            <h2><img src="{% static 'img/icon_name.png' %}" alt="">Nome</h2>
+            <input class="input-type1" type="text" name="name" placeholder="Nome do QR-Code" required>
+        
+            <h2><img src="{% static 'img/icon_size.png' %}" alt="">Tamanho QR-Code</h2>
+            <input class="input-type4" type="range" name="size" value="150" min = '100' max="300" id="input-range" required>
+            <label id= 'range-label' for="input-range">Largura: 100px</label>
+
+        
+            <h2><img src="{% static 'img/icon_color.png' %}" alt=""> Cor Qr-Code</h2>
+            <label>Cor Padrão:</label>
+            <div class="input-colors">
+                <input class="input-type2" type="color" name="color" id= 'color-picker' required>
+                <input class="input-type3" type="text" name="color" id= 'color-text' placeholder="#FFFFFF" required>
+            </div>
+
+            <label>Cor de fundo:</label>
+            <div class="input-colors">
+                <input class="input-type2" type="color" name="back_color" id = 'color-picker1' required>
+                <input class="input-type3" type="text" name="back_color" id= 'color-text1' placeholder="#FFFFFF" required>
+            </div>
+            
+            <button class = 'create-st' type="submit">Gerar</button>
+
+
+           
+
+            
+        </form>
+
+        
+        <div class="qr-code-container">
+            <h2>QR-Code - Gerado:</h2>
+            {% if qr_image_url %}
+                <img class="QR" src="{{ qr_image_url }}" alt="QR-Code Gerado">
+            {% else %}
+                <img class="QR" src = "{% static 'img/qr-codes.png' %}" alt="QR-Code Gerado">
+            {% endif %}
+        </div>
+
+    </div>
+    
+    <script src="{% static 'js/standart.js'%}"></script>
+
+</body>
+
+
+
+{% endblock %}

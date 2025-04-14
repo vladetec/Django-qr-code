@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/free.css' %}">
+{% endblock %}
+
+{% block title %}
+    Gerador - QR-Code 
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="free">
+        <span class="p1">Gerador Basico de </span>
+        <span class="p2">QR-code por</span>
+        <span class="p3">30 Dias</span>
+    </div>
+
+    {% if error %}
+        <p class="error-message" style="color: red;">{{ error }}</p>
+    {% endif %}
+    <div class="main">
+        
+        <form class = "qr-form" method="POST">
+            {% csrf_token %}
+            <h2>
+                <img src="{% static 'img/icon_link.png' %}" alt="">
+                Link QR-Code
+            </h2>
+            <input type="text" name="link" placeholder="https://minha_url.com/" required>
+
+            <h2>
+                <img src="{% static 'img/icon_name.png' %}" alt="">
+                Nome QR-Code
+            </h2>
+            <input type="text" name="name" placeholder="QR-code Nome" required>
+
+            <button class="QR_button" id = 'qr-button' type="submit" >Gerar</button>
+        </form>
+        <div class="qr-code-container">
+            <h2>QR-Code Gerado:</h2>
+            {% if qr_image_url %}
+                <img class="QR" src="{{ qr_image_url }}" alt="QR-Code Gerado">
+            {% else %}
+                <img class="QR" src = "{% static 'img/qr-codes.png' %}" alt="QR-Code Gerado">
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
