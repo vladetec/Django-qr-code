@@ -5,6 +5,58 @@ services:
     build: .
     ports:
       - "8000:8000"
+    env_file:
+      - .env  
+    depends_on:
+      - db
+    networks:
+      - backend  
     volumes:
       - .:/app
     command: python manage.py runserver 0.0.0.0:8000
+
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      - db
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data                             #Pasta onde os arquivos de configuração serão disponíveis no ambiente de host ~/docker/portainer/portainer-data/
+    ports:
+      - 9000:9000
+      
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+    driver: bridge

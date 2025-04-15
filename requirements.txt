@@ -10,3 +10,5 @@ python-decouple
 qrcode
 sqlparse
 typing_extensions
+psycopg2-binary
+dj-database-url

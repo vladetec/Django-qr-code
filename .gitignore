@@ -24,6 +24,10 @@ media
 # C extensions
 *.so
 
+# Portainer
+*.portainer-data
+*portainer-data/portainer.db
+
 # Distribution / packaging
 .Python
 build/
